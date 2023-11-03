@@ -3,19 +3,19 @@
 
 double f(double x)
 {
-	//функция f
+	//С„СѓРЅРєС†РёСЏ f
 	return x + log10(x) - 0.5;
 }
 
 double fd(double x)
 {
-	//производная функции f
+	//РїСЂРѕРёР·РІРѕРґРЅР°СЏ С„СѓРЅРєС†РёРё f
 	return (log(10) * x + 1) / (log(10) * x);
 }
 
 std::pair<double, double> localization()
 {
-	//локализация корня
+	//Р»РѕРєР°Р»РёР·Р°С†РёСЏ РєРѕСЂРЅСЏ
 	double b = 100, a = 0;
 	int N = 10;
 	double h = (b - a) / N;
@@ -26,7 +26,7 @@ std::pair<double, double> localization()
 
 double newton()
 {
-	//метод ньютона для решения неленийного уравнения
+	//РјРµС‚РѕРґ РЅСЊСЋС‚РѕРЅР° РґР»СЏ СЂРµС€РµРЅРёСЏ РЅРµР»РµРЅРёР№РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ
 	auto interval = localization();
 	double x = interval.second, tmp;
 	int count = 0;
@@ -37,16 +37,16 @@ double newton()
 		x = x - f(x) / fd(x);
 
 		if (x > interval.second || x < interval.first)
-		{ //проверка на "вылет" приближения  из интервала
+		{ //РїСЂРѕРІРµСЂРєР° РЅР° "РІС‹Р»РµС‚" РїСЂРёР±Р»РёР¶РµРЅРёСЏ  РёР· РёРЅС‚РµСЂРІР°Р»Р°
 			x = (interval.first + interval.second) / 2;
-			std::cout << "Метод половинного деления сработал на " << count << " шаге" << std::endl;
+			std::cout << "РњРµС‚РѕРґ РїРѕР»РѕРІРёРЅРЅРѕРіРѕ РґРµР»РµРЅРёСЏ СЃСЂР°Р±РѕС‚Р°Р» РЅР° " << count << " С€Р°РіРµ" << std::endl;
 		}
 
-		if (f(x) < 0) interval = std::make_pair(x, interval.second); //пересчитывание интервала
+		if (f(x) < 0) interval = std::make_pair(x, interval.second); //РїРµСЂРµСЃС‡РёС‚С‹РІР°РЅРёРµ РёРЅС‚РµСЂРІР°Р»Р°
 		else interval = std::make_pair(interval.first, x);
 	} while (abs(tmp - x) > 0.0001);
 
-	std::cout << "Решение: " << x << std::endl;
-	std::cout << "Количество итераций: " << count << std::endl;
+	std::cout << "Р РµС€РµРЅРёРµ: " << x << std::endl;
+	std::cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РёС‚РµСЂР°С†РёР№: " << count << std::endl;
 	return x;
 }
