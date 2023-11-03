@@ -3,7 +3,7 @@
 #include <iostream>
 std::vector<double> find_x(std::vector<std::vector <double>> U, std::vector <double> y)
 {
-	//нахождение вектора x в QR методе
+	//РЅР°С…РѕР¶РґРµРЅРёРµ РІРµРєС‚РѕСЂР° x РІ QR РјРµС‚РѕРґРµ
 	int n = y.size();
 	std::vector<double> x(n, 0);
 	for (int i = n - 1; i > -1; --i)
@@ -21,7 +21,7 @@ std::vector<double> find_x(std::vector<std::vector <double>> U, std::vector <dou
 
 double norma_vec(std::vector<double> vec)
 {
-	//вычисление нормы вектора 
+	//РІС‹С‡РёСЃР»РµРЅРёРµ РЅРѕСЂРјС‹ РІРµРєС‚РѕСЂР° 
 	double norm = 0;
 	int n = vec.size();
 	for (int i = 0; i != n; ++i) {
@@ -34,7 +34,7 @@ double norma_vec(std::vector<double> vec)
 
 std::vector<double> sum(std::vector<double> a, std::vector<double> b)
 {
-	//сложение двух векторов
+	//СЃР»РѕР¶РµРЅРёРµ РґРІСѓС… РІРµРєС‚РѕСЂРѕРІ
 	int n = a.size();
 	for (int i = 0; i != n; ++i)
 		a[i] += b[i];
@@ -43,7 +43,7 @@ std::vector<double> sum(std::vector<double> a, std::vector<double> b)
 
 std::vector<double> mult_num(double a, std::vector<double>& z)
 {
-	//умножение вектора на число 
+	//СѓРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° С‡РёСЃР»Рѕ 
 	int n = z.size();
 	for (int i = 0; i < n; ++i)
 		z[i] *= a;
@@ -52,7 +52,7 @@ std::vector<double> mult_num(double a, std::vector<double>& z)
 
 std::vector<std::vector<double>> mult_matr(std::vector<std::vector<double>> A, std::vector<std::vector<double>> B)
 {
-	//умножение двух матриц
+	//СѓРјРЅРѕР¶РµРЅРёРµ РґРІСѓС… РјР°С‚СЂРёС†
 	int n = A.size();
 	std::vector<double> v(n, 0);
 	std::vector<std::vector<double>> R(n, v);
@@ -65,7 +65,7 @@ std::vector<std::vector<double>> mult_matr(std::vector<std::vector<double>> A, s
 
 std::vector<double> mult(std::vector<std::vector<double>> a, std::vector<double> b)
 {
-	//умножение матрицы на вектор
+	//СѓРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РІРµРєС‚РѕСЂ
 	int n = b.size();
 	std::vector<double> vec(n, 0);
 	for (int i = 0; i != n; ++i) {
@@ -78,7 +78,7 @@ std::vector<double> mult(std::vector<std::vector<double>> a, std::vector<double>
 
 std::vector<double> QR(std::vector<std::vector<double>> R, std::vector<double> b)
 {
-	//решение СЛАУ методом QR
+	//СЂРµС€РµРЅРёРµ РЎР›РђРЈ РјРµС‚РѕРґРѕРј QR
 	int n = b.size();
 	double a;
 	std::vector<double> x(n, 0), y, v, z;
@@ -145,33 +145,33 @@ std::vector<double> QR(std::vector<std::vector<double>> R, std::vector<double> b
 
 std::vector<double> F(std::vector<double> x)
 {
-	//функция F(x, y)
+	//С„СѓРЅРєС†РёСЏ F(x, y)
 	return { cos(x[1] + 0.5) + x[0] - 0.8,
 			 sin(x[0]) - 2 * x[1] - 1.6 };
 }
 
 std::vector<std::vector<double>> dF(std::vector<double> x)
 {
-	//матрица Якоби для F(x, y)
+	//РјР°С‚СЂРёС†Р° РЇРєРѕР±Рё РґР»СЏ F(x, y)
 	return { { 1, -sin(x[1] + 0.5)},
 			 { cos(x[0]), -2 } };
 }
 
 std::vector<double> Fi(std::vector<double> x, double h)
 {
-	//функция Ф(h, x, y)
+	//С„СѓРЅРєС†РёСЏ Р¤(h, x, y)
 	return { (h / 10) * cos(x[1] + 0.5) + x[0] - 0.8, (h / 10) * sin(x[0]) - 2 * x[1] - 1.6 };
 }
 std::vector<std::vector<double>> dFi(std::vector<double> x, double h)
 {
-	//матрица Якоби для Ф(h, x, y)
+	//РјР°С‚СЂРёС†Р° РЇРєРѕР±Рё РґР»СЏ Р¤(h, x, y)
 	return { { 1, -(h / 10) * sin(x[1] + 0.5)},
 			 { (h / 10) * cos(x[0]), -2 } };
 }
 
 std::vector<double> initial_approximation()
 {
-	//нахождение начального приближения используя замечание 1.4
+	//РЅР°С…РѕР¶РґРµРЅРёРµ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ РїСЂРёР±Р»РёР¶РµРЅРёСЏ РёСЃРїРѕР»СЊР·СѓСЏ Р·Р°РјРµС‡Р°РЅРёРµ 1.4
 	std::vector<double> x = { 0.8, -0.8 }, fi;
 	for (int i = 1; i < 10; ++i) {
 		fi = Fi(x, i);
@@ -182,19 +182,19 @@ std::vector<double> initial_approximation()
 
 std::vector<double> system_equations(std::vector<double> x)
 {
-	//метод Ньютона для системы уравнений
+	//РјРµС‚РѕРґ РќСЊСЋС‚РѕРЅР° РґР»СЏ СЃРёСЃС‚РµРјС‹ СѓСЂР°РІРЅРµРЅРёР№
 	std::vector<double> tmp, d, f;
 	int count = 0;
 	do {
 		++count;
 		tmp = x;
 		f = F(x);
-		d = QR(dF(x), mult_num(-1, f)); // вычисление delta X(k)
-		x = sum(x, d); // вычисление X(k+1)
+		d = QR(dF(x), mult_num(-1, f)); // РІС‹С‡РёСЃР»РµРЅРёРµ delta X(k)
+		x = sum(x, d); // РІС‹С‡РёСЃР»РµРЅРёРµ X(k+1)
 	} while (norma_vec(sum(x, mult_num(-1, tmp))) > 0.0001);
-	std::cout << "Решение: ";
+	std::cout << "Р РµС€РµРЅРёРµ: ";
 	for (auto& c : x)
 		std::cout << c << " ";
-	std::cout << std::endl << "Количество итераций: " << count << std::endl;
+	std::cout << std::endl << "РљРѕР»РёС‡РµСЃС‚РІРѕ РёС‚РµСЂР°С†РёР№: " << count << std::endl;
 	return x;
 }
